@@ -18,3 +18,10 @@ name_list =[
 def retrieve_name_list():
     return name_list
 
+
+@app.get("/name/{name_id}")
+def retrieve_name_detail(name_id:int):
+    for name in name_list:
+        if name["id"] == name_id:
+            return name
+    return {"detail":"object not found"}
