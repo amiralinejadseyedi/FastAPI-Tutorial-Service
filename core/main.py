@@ -19,7 +19,7 @@ name_list =[
 
 
 @app.get("/name")
-def search_name(q:str|None=None):
+def search_name(q:str|None = Query(default = None , max_length=50)):
     if q:
         return [item for item in name_list if q == item["name"]]
     return name_list
