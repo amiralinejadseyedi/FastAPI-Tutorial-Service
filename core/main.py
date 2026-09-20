@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Query, status, HTTPException
 from fastapi.responses import JSONResponse
 import random
-
+from  dataclasses import dataclass
 
 app = FastAPI()
 
@@ -32,12 +32,24 @@ def retrieve_name_detail(name_id:int):
     raise HTTPException(status_code = status.HTTP_404_NOT_FOUND, detail= "object not found")
 
 
-        
+@dataclass
+class Student:
+    name:str
+    age:int
+
+@dataclass
+class ResponseStudent:
+    id:int
+    name:str           
 
 @app.post("/name",status_code = status.HTTP_201_CREATED)
-def create_name(name:str):
-    name_obj = {"id":random.randint(6,100), "name": name}
+#def create_name(name:str):
+def create_name(student:Student):
+    name_obj = {"id":random.randint(6,100), "name": student.name}
     name_list.append(name_obj)
+    response = ResponseStudent(random.randint(10,100), student.name)
+    print(response)
+
     return name_obj
 
 
