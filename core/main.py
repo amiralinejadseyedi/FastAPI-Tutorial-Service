@@ -2,7 +2,7 @@ from fastapi import FastAPI, Query, status, HTTPException
 from fastapi.responses import JSONResponse
 import random
 from  dataclasses import dataclass
-from schemas import PersonCreateSchema, PersonResponeSchema, PersonUpdateSchema 
+from schemas import PersonBaseSchema, PersonCreateSchema, PersonResponeSchema, PersonUpdateSchema 
 from typing import List
 
 
